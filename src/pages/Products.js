@@ -1,4 +1,5 @@
-import { Box, Card, CardContent, CardHeader, Grid, Icon, Paper, Skeleton, Typography } from '@mui/material'
+import { Box, Button, Card, CardActions, CardContent, CardHeader, Grid, Paper, Skeleton, Typography } from '@mui/material'
+import SettingsIcon from '@mui/icons-material/Settings'
 
 const Products = () => {
   return (
@@ -63,11 +64,16 @@ const Products = () => {
           <Card>
           <CardHeader
               avatar={
-                <Icon></Icon>
+                <SettingsIcon />
               }
               title='Configurator'
               subheader='Customize your light'
             />
+            <CardActions>
+              <Button sx={{ m: 1}} variant="outlined">
+                Open
+              </Button>
+            </CardActions>
           </Card>
         </Grid>
       </Paper>
