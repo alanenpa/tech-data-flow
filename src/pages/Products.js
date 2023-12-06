@@ -3,7 +3,7 @@ import SettingsIcon from '@mui/icons-material/Settings'
 
 const Products = () => {
   return (
-    <Grid container sx={{ m: '1vh', p: '1vh' }} spacing={3} direction='column' alignItems='center'>
+    <Grid container sx={{ m: 'auto', p: 'auto' }} spacing={3} direction='column' alignItems='center'>
       <Paper elevation={10}>
         <Grid item sx={{ p: 2 }}>
           <Box display='flex' alignItems='center' justifyContent="center">
@@ -12,7 +12,6 @@ const Products = () => {
             </Typography>
           </Box>
         </Grid>
-
         <Grid item alignItems='center' sx={{ p: 2 }}>
           <Box display='flex' alignItems='center' justifyContent="center">
             <Typography>What kind of illumination would you need?</Typography>
