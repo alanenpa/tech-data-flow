@@ -19,7 +19,6 @@ const Configurator = () => {
   }
 
   const handlePositionChange = (value, index) => {
-    console.log(index, value)
     if (position[index] === value) return
     let newPosition = position.slice()
     newPosition[index] = value
@@ -31,7 +30,6 @@ const Configurator = () => {
       type: selectedType,
       position: position
     }
-    console.log(alreadyExists(newLight))
     if (alreadyExists(newLight)) return
     setLightsList([...lightsList, newLight])
   }

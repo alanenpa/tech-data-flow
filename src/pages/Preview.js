@@ -20,16 +20,12 @@ const Preview = () => {
   }
 
   const removeLight = (index) => {
-    console.log('removing')
-    console.log(lightsList)
     const newList = lightsList.filter((light, i) =>
       i !== index
     )
-    // console.log(lightsList)
     setLightsList(newList)
   }
 
-  console.log('hello', lightsList)
   return (
     <Grid container sx={{ m: 'auto' }} direction='column' alignItems='center'>
       <Paper elevation={2}>
