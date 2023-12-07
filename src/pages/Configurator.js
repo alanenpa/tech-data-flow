@@ -6,11 +6,12 @@ import truck_back from '../assets/truck-back.png'
 import truck_front from '../assets/truck-front.png'
 import border_top from '../assets/border_top.png'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 // import border_bottom from '../assets/border_bottom.png'
 
 const Configurator = () => {
   const [selectedType, setSelectedType] = useState('wide')
-  const [position, setPosition] = useState(['back','top','left'])
+  const [position, setPosition] = useState(['back', 'top', 'left'])
   const [lightsList, setLightsList] = useState([])
 
   const handleTypeChange = (type) => {
@@ -36,17 +37,20 @@ const Configurator = () => {
   }
 
   const alreadyExists = (newLight) => {
-    return lightsList.some(light => light.position === newLight.position)
+    return lightsList.some(light => light.type === newLight.type && light.position === newLight.position)
   }
 
   return (
-    <Grid container sx={{ m: '1vh', p: '1vh' }} spacing={3} direction='column' alignItems='center'>
-      <Paper elevation={10}>
+    <Grid container sx={{ m: 'auto' }} direction='column' alignItems='center'>
+      <Paper elevation={2}>
+        <Grid item sx={{ p: 2 }} display='flex' justifyContent="center">
+          <Typography variant='h6'>Configurator</Typography>
+        </Grid>
         <Grid item sx={{ p: 2 }}>
           <Typography>Select your products to preview the light effect</Typography>
         </Grid>
         <Grid item sx={{ p: 2 }}>
-          <Typography sx={{ pl: 1, pb: 1 }}>
+          <Typography variant='h6' sx={{ pl: 1, pb: 1 }}>
             Types of light
           </Typography>
           <Stack sx={{ backgroundColor: '#F5F5F5', borderRadius: 1 }} direction='row' justifyContent="space-evenly" alignItems="center" spacing={2}>
@@ -56,12 +60,12 @@ const Configurator = () => {
           </Stack>
         </Grid>
         <Grid item sx={{ p: 2, pt: 4 }}>
-          <Typography sx={{ pl: 1, pb: 1 }}>
+          <Typography variant='h6' sx={{ pl: 1, pb: 1 }}>
             Position
           </Typography>
           <Stack sx={{ p: 1, mb: 2 }} direction='row' justifyContent="space-evenly" alignItems="center">
-            <Button onClick={() => handlePositionChange('back', 0)}><img src={truck_back} alt='backside of truck'/></Button>
-            <Button onClick={() => handlePositionChange('front', 0)}><img src={truck_front} alt='frontside of truck'/></Button>
+            <Button onClick={() => handlePositionChange('back', 0)}><img src={truck_back} alt='backside of truck' /></Button>
+            <Button onClick={() => handlePositionChange('front', 0)}><img src={truck_front} alt='frontside of truck' /></Button>
           </Stack>
           <Stack sx={{ backgroundColor: '#F5F5F5', borderRadius: 1 }} direction='row' justifyContent="space-evenly" alignItems="center" spacing={2}>
             <Button onClick={() => handlePositionChange('top', 1)}>Top</Button>
@@ -77,7 +81,7 @@ const Configurator = () => {
           <Button onClick={() => handleAddConfiguration()} variant='contained'>Add to configurations</Button>
         </Grid>
         <Grid item sx={{ my: 3, mb: 8 }} display='flex' justifyContent="center">
-          <Button variant='contained'>Preview configurations</Button>
+          <Link to='/preview' state={{ lightsList }} ><Button variant='contained'>Preview configurations</Button></Link>
         </Grid>
       </Paper>
     </Grid>
