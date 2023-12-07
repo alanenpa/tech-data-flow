@@ -3,9 +3,40 @@ import lamp from '../assets/lamp.png'
 import truck_back from '../assets/truck-back.png'
 import truck_front from '../assets/truck-front.png'
 import border_top from '../assets/border_top.png'
+import { useState } from 'react'
 // import border_bottom from '../assets/border_bottom.png'
 
 const Configurator = () => {
+  const [selectedType, setSelectedType] = useState('wide')
+  const [position, setPosition] = useState(['back','top','left'])
+  const [lightsList, setLightsList] = useState([])
+
+  const handleTypeChange = (type) => {
+    setSelectedType(type)
+  }
+
+  const handlePositionChange = (value, index) => {
+    console.log(index, value)
+    if (position[index] === value) return
+    let newPosition = position.slice()
+    newPosition[index] = value
+    setPosition(newPosition)
+  }
+
+  const handleAddConfiguration = () => {
+    const newLight = {
+      type: selectedType,
+      position: position
+    }
+    console.log(alreadyExists(newLight))
+    if (alreadyExists(newLight)) return
+    setLightsList([...lightsList, newLight])
+  }
+
+  const alreadyExists = (newLight) => {
+    return lightsList.some(light => light.type === newLight.type && light.position === newLight.position)
+  }
+
   return (
     <Grid container sx={{ m: '1vh', p: '1vh' }} spacing={3} direction='column' alignItems='center'>
       <Paper elevation={10}>
@@ -17,45 +48,30 @@ const Configurator = () => {
             Types of light
           </Typography>
           <Stack sx={{ backgroundColor: '#F5F5F5', borderRadius: 1 }} direction='row' justifyContent="space-evenly" alignItems="center" spacing={2}>
-            {/* <Button startIcon={<Avatar src={lamp} />}></Button> */}
-            {/* <Button startIcon={<Avatar src={lamp} />}></Button> */}
-            {/* <Button startIcon={<Avatar src={lamp} />}></Button> */}
-            <Button>Wide</Button>
-            <Button>Spot</Button>
-            <Button>Hybrid</Button>
+            <Button onClick={() => handleTypeChange('wide')}>Wide</Button>
+            <Button onClick={() => handleTypeChange('spot')}>Spot</Button>
+            <Button onClick={() => handleTypeChange('hybrid')}>Hybrid</Button>
           </Stack>
         </Grid>
         <Grid item sx={{ p: 2, pt: 4 }}>
           <Typography sx={{ pl: 1, pb: 1 }}>
             Position
           </Typography>
-          {/* <Stack direction='row' justifyContent="space-evenly" alignItems="center" spacing={2}>
-            <Button sx={{ textDecoration: 'underline' }}>
-              <Typography sx={{ textDecoration: 'underline' }}>
-                Front
-              </Typography>
-            </Button>
-            <Button>
-              <Typography sx={{ textDecoration: 'underline' }}>
-                Back
-              </Typography>
-            </Button>
-          </Stack> */}
-          <Stack sx={{ p: 1 }} direction='row' justifyContent="space-evenly" alignItems="center">
-            <Button><img src={truck_back} alt='backside of truck' /></Button>
-            <Button><img src={truck_front} alt='frontside of truck' /></Button>
+          <Stack sx={{ p: 1, mb: 2 }} direction='row' justifyContent="space-evenly" alignItems="center">
+            <Button onClick={() => handlePositionChange('back', 0)}><img src={truck_back} alt='backside of truck'/></Button>
+            <Button onClick={() => handlePositionChange('front', 0)}><img src={truck_front} alt='frontside of truck'/></Button>
           </Stack>
           <Stack sx={{ backgroundColor: '#F5F5F5', borderRadius: 1 }} direction='row' justifyContent="space-evenly" alignItems="center" spacing={2}>
-            <Button startIcon={<Avatar src={border_top} />}></Button>
-            <Button startIcon={<Avatar src={border_top} />}></Button>
+            <Button onClick={() => handlePositionChange('top', 1)}>Top</Button>
+            <Button onClick={() => handlePositionChange('bottom', 1)}>Bottom</Button>
           </Stack>
           <Stack sx={{ backgroundColor: '#F5F5F5', borderRadius: 1, mt: 3 }} direction='row' justifyContent="space-evenly" alignItems="center" spacing={2}>
-            <Button startIcon={<Avatar src={border_top} />}></Button>
-            <Button startIcon={<Avatar src={border_top} />}></Button>
+            <Button onClick={() => handlePositionChange('left', 2)}>Left</Button>
+            <Button onClick={() => handlePositionChange('right', 2)}>Right</Button>
           </Stack>
         </Grid>
         <Grid item sx={{ mt: 5, mb: 3 }} display='flex' justifyContent="center">
-          <Button variant='contained'>Add to configuration</Button>
+          <Button onClick={() => handleAddConfiguration()} variant='contained'>Add to configurations</Button>
         </Grid>
         <Grid item sx={{ my: 3, mb: 8 }} display='flex' justifyContent="center">
           <Button variant='contained'>Preview configurations</Button>
