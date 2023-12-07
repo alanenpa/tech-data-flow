@@ -1,5 +1,7 @@
 import { Avatar, Button, Grid, Paper, Stack, Typography } from '@mui/material'
-import lamp from '../assets/lamp.png'
+import RenderImage from './RenderImage'
+
+// import lamp from '../assets/lamp.png'
 import truck_back from '../assets/truck-back.png'
 import truck_front from '../assets/truck-front.png'
 import border_top from '../assets/border_top.png'
@@ -34,7 +36,7 @@ const Configurator = () => {
   }
 
   const alreadyExists = (newLight) => {
-    return lightsList.some(light => light.type === newLight.type && light.position === newLight.position)
+    return lightsList.some(light => light.position === newLight.position)
   }
 
   return (
@@ -70,6 +72,7 @@ const Configurator = () => {
             <Button onClick={() => handlePositionChange('right', 2)}>Right</Button>
           </Stack>
         </Grid>
+        <RenderImage configurations={lightsList} />
         <Grid item sx={{ mt: 5, mb: 3 }} display='flex' justifyContent="center">
           <Button onClick={() => handleAddConfiguration()} variant='contained'>Add to configurations</Button>
         </Grid>
