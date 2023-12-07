@@ -1,5 +1,6 @@
 import { Box, Button, Card, CardActions, CardContent, CardHeader, Grid, Paper, Skeleton, Typography } from '@mui/material'
 import SettingsIcon from '@mui/icons-material/Settings'
+import { Link } from 'react-router-dom'
 
 const Products = () => {
   return (
@@ -69,9 +70,11 @@ const Products = () => {
               subheader='Customize your light'
             />
             <CardActions>
-              <Button sx={{ m: 1}} variant="outlined">
-                Open
-              </Button>
+              <Link to='/configurator'>
+                <Button sx={{ m: 1}} variant="outlined">
+                  Open
+                </Button>
+              </Link>
             </CardActions>
           </Card>
         </Grid>

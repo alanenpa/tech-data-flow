@@ -1,5 +1,5 @@
 import { Button, Card, CardContent, Grid, List, ListItem, Paper, TextField, Typography } from "@mui/material"
-import { useLocation } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import DeleteIcon from '@mui/icons-material/Delete'
 import RenderImage from "./RenderImage"
 import { useState } from "react"
@@ -87,7 +87,7 @@ const Preview = () => {
             />
           </Grid>
           <Grid item sx={{ mt: 5, mb: 3 }} display='flex' justifyContent="center">
-            <Button onClick={() => {}} variant='contained'>Request a quote</Button>
+            <Link to='/finish'><Button variant='contained'>Request a quote</Button></Link>
           </Grid>
         </Grid>
       </Paper>
