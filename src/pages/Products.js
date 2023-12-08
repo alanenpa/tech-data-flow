@@ -18,9 +18,9 @@ const Products = () => {
             <Typography>What kind of illumination would you need?</Typography>
           </Box>
         </Grid>
-        <Grid item sx={{ p: 2 }}>
-          <Card>
-            <Skeleton sx={{ m: 2, height: 120 }} animation="wave" variant="rectangular" />
+        <Grid item sx={{ m: 3, borderStyle: 'dashed', borderColor: '#bdbdbd', borderRadius: '20px', borderWidth: '2px'  }}>
+          <Card sx={{ borderRadius: '20px' }} >
+            <Skeleton sx={{ m: 2, height: 120, borderRadius: '10px' }} animation="wave" variant="rectangular" />
             <CardHeader
               title='Wide range'
             />
@@ -32,11 +32,11 @@ const Products = () => {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item sx={{ p: 2 }}>
-          <Card>
-            <Skeleton sx={{ m: 2, height: 120 }} animation="wave" variant="rectangular" />
+        <Grid item sx={{ m: 3, borderStyle: 'dashed', borderColor: '#bdbdbd', borderRadius: '20px', borderWidth: '2px'  }}>
+          <Card sx={{ borderRadius: '20px' }} >
+            <Skeleton sx={{ m: 2, height: 120, borderRadius: '10px' }} animation="wave" variant="rectangular" />
             <CardHeader
-              title='Long range'
+              title='Spot'
             />
             <CardContent>
               <Typography>
@@ -46,9 +46,9 @@ const Products = () => {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item sx={{ p: 2 }}>
-          <Card>
-            <Skeleton sx={{ m: 2, height: 120 }} animation="wave" variant="rectangular" />
+        <Grid item sx={{ m: 3, borderStyle: 'dashed', borderColor: '#bdbdbd', borderRadius: '20px', borderWidth: '2px'  }}>
+          <Card sx={{ borderRadius: '20px' }} >
+            <Skeleton sx={{ m: 2, height: 120, borderRadius: '10px' }} animation="wave" variant="rectangular" />
             <CardHeader
               title='Hybrid'
             />
@@ -60,23 +60,21 @@ const Products = () => {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item sx={{ p: 2 }}>
-          <Card>
+        <Grid item sx={{ p: 2, m: 2 }}>
+        <Card sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px', borderRadius: '10px' }}>
           <CardHeader
-              avatar={
-                <SettingsIcon />
-              }
-              title='Configurator'
-              subheader='Customize your light'
-            />
-            <CardActions>
-              <Link to='/configurator'>
-                <Button sx={{ m: 1}} variant="outlined">
-                  Open
-                </Button>
-              </Link>
-            </CardActions>
-          </Card>
+            avatar={<SettingsIcon />}
+            title='Configurator'
+            subheader='Customize your light'
+          />
+          <CardActions>
+            <Link to='/configurator'>
+              <Button sx={{ m: 1 }} variant="outlined">
+                Open
+              </Button>
+            </Link>
+          </CardActions>
+        </Card>
         </Grid>
       </Paper>
     </Grid>
