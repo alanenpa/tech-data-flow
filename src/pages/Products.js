@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom'
 
 const Products = () => {
   return (
-    <Grid container sx={{ m: 'auto', p: 'auto' }} spacing={3} direction='column' alignItems='center'>
+    <Grid container sx={{ m: 'auto', p: 'auto', width: '100%' }} spacing={3} direction='column' alignItems='center'>
       <Paper elevation={10}>
         <Grid item sx={{ p: 2 }}>
           <Box display='flex' alignItems='center' justifyContent="center">
-            <Typography alignItems='center' variant='h5'>
+            <Typography alignItems='center' variant='h5' sx={{pt: 3}}>
               ZAURAC 4-30
             </Typography>
           </Box>

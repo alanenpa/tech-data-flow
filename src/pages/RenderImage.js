@@ -143,8 +143,8 @@ function RenderLight({ position }) {
         width: '100%',
         height: '100%',
         zIndex: 1,
-        maxWidth: '350px',
-        maxHeight: '350px'
+        maxWidth: '380px',
+        maxHeight: '380px'
       }}
     >
       <img
@@ -160,18 +160,18 @@ function RenderLight({ position }) {
   );
 }
 
-const RenderImage = ({ configurations }) => {
+const RenderImage = ({ lightsList }) => {
 
   // input muotoa ["spot front top right", "hybrid back bottom left", "wide front top left"] jne
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <div style={{ position: 'relative', width: '100%', height: '100%', maxWidth: '350px', maxHeight: '350px' }}> 
+      <div style={{ position: 'relative', width: '100%', height: '100%', maxWidth: '380px', maxHeight: '380px' }}> 
         <img
           src={background}
           style={{ width: '100%', height: '100%', objectFit: 'cover'}}
         />
-      {configurations.map((light, index) => (
+      {lightsList.map((light, index) => (
         <RenderLight key={index} position={light} />
       ))}
       </div>

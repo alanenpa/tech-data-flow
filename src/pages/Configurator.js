@@ -1,5 +1,6 @@
-import { Avatar, Button, Grid, Paper, Stack, Typography } from '@mui/material'
+import { Button, Grid, Paper, Stack, Typography } from '@mui/material'
 import RenderImage from './RenderImage'
+import Configurations from './Configurations'
 
 // import lamp from '../assets/lamp.png'
 import truck_back from '../assets/truck-back.png'
@@ -38,9 +39,16 @@ const Configurator = () => {
     return lightsList.some(light => light.type === newLight.type && light.position === newLight.position)
   }
 
+  const removeLight = (index) => {
+    const newList = lightsList.filter((light, i) =>
+      i !== index
+    )
+    setLightsList(newList)
+  }
+
   return (
-    <Grid container sx={{ m: 'auto' }} direction='column' alignItems='center'>
-      <Paper elevation={2}>
+    <Grid container sx={{ width: '100%', m: 'auto' }} direction='column' alignItems='center'>
+      <Paper elevation={0} sx={{ width: '100%' }}>
         <Grid item sx={{ p: 2 }} display='flex' justifyContent="center">
           <Typography variant='h6'>Configurator</Typography>
         </Grid>
@@ -72,18 +80,37 @@ const Configurator = () => {
           <Stack sx={{ backgroundColor: '#F5F5F5', borderRadius: 1, mt: 3 }} direction='row' justifyContent="space-evenly" alignItems="center" spacing={2}>
             <Button onClick={() => handlePositionChange('left', 2)}>Left</Button>
             <Button onClick={() => handlePositionChange('right', 2)}>Right</Button>
-          </Stack>
+          </Stack>          
+        </Grid> 
+        <Grid item sx={{ pt: 2 }}>
+          <Typography sx={{ pl: 3, pb: 3 }}>Your preview images for selected products</Typography>
         </Grid>
-        <RenderImage configurations={lightsList} />
-        <Grid item sx={{ mt: 5, mb: 3 }} display='flex' justifyContent="center">
-          <Button onClick={() => handleAddConfiguration()} variant='contained'>Add to configurations</Button>
+        <RenderImage lightsList={lightsList} />
+        <Configurations lightsList={lightsList} removeLight={removeLight} />       
+        <Grid container justifyContent="space-between" alignItems="center" sx={{ mt: 5, mb: 8 }}>
+        <Grid item sx={{ flex: 1, pl: 2, pb: 1, pr: 2 }}>
+          <Button
+            onClick={() => handleAddConfiguration()}
+            variant='contained'
+            style={{ width: '100%', paddingLeft: '20px', fontSize: '11px' }}
+          >
+            Add +
+          </Button>
         </Grid>
-        <Grid item sx={{ my: 3, mb: 8 }} display='flex' justifyContent="center">
-          <Link to='/preview' state={{ lightsList }} ><Button variant='contained'>Preview configurations</Button></Link>
+        <Grid item sx={{ flex: 1, pr: 2, pb: 1, pl: 1 }}>
+          <Link to='/request' state={{ lightsList }}>
+            <Button
+              variant='contained'
+              style={{ width: '100%', paddingRight: '20px', fontSize: '11px' }}
+            >
+              Request a quote
+            </Button>
+          </Link>
         </Grid>
+      </Grid>
       </Paper>
     </Grid>
   )
 }
 
-export default Configurator
+export default Configurator;
