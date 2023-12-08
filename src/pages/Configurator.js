@@ -5,7 +5,21 @@ import Configurations from './Configurations'
 // import lamp from '../assets/lamp.png'
 import truck_back from '../assets/truck-back.png'
 import truck_front from '../assets/truck-front.png'
-import border_top from '../assets/border_top.png'
+import truck_back_active from '../assets/truck-back-active.png'
+import truck_front_active from '../assets/truck-front-active.png'
+
+import hybrid from '../assets/button_hybrid-light-off.svg'
+import hybrid_hover from '../assets/button_hybrid-light- over.svg'
+import hybrid_active from '../assets/button_hybrid-light-on.svg'
+
+import spot from '../assets/button_spot-light-off.svg'
+import spot_hover from '../assets/button_spot-light-over.svg'
+import spot_active from '../assets/button_spot-light-on.svg'
+
+import wide from '../assets/button_wide-light-off.svg'
+import wide_hover from '../assets/button_wide-light-over.svg'
+import wide_active from '../assets/button_wide-light-on.svg'
+
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 // import border_bottom from '../assets/border_bottom.png'
@@ -59,10 +73,28 @@ const Configurator = () => {
           <Typography variant='h6' sx={{ pl: 1, pb: 1 }}>
             Types of light
           </Typography>
-          <Stack sx={{ backgroundColor: '#F5F5F5', borderRadius: 1 }} direction='row' justifyContent="space-evenly" alignItems="center" spacing={2}>
-            <Button onClick={() => handleTypeChange('wide')}>Wide</Button>
-            <Button onClick={() => handleTypeChange('spot')}>Spot</Button>
-            <Button onClick={() => handleTypeChange('hybrid')}>Hybrid</Button>
+          <Stack direction='row' justifyContent="space-evenly" alignItems="center" spacing={2}>
+            <Button sx={{width: '81%', height: '81%'}} disableRipple onClick={() => handleTypeChange('wide')}>
+                <img
+                  src={(selectedType == 'wide') ? wide_active : wide}
+                  alt='wide'
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+            </Button>
+            <Button disableRipple onClick={() => handleTypeChange('spot')}>
+                <img
+                  src={(selectedType == 'spot') ? spot_active : spot}
+                  alt='spot'
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+            </Button>
+            <Button disableRipple onClick={() => handleTypeChange('hybrid')}>
+                <img
+                  src={(selectedType == 'hybrid') ? hybrid_active : hybrid}
+                  alt='hybrid'
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+            </Button>
           </Stack>
         </Grid>
         <Grid item sx={{ p: 2, pt: 4 }}>
@@ -70,8 +102,18 @@ const Configurator = () => {
             Position
           </Typography>
           <Stack sx={{ p: 1, mb: 2 }} direction='row' justifyContent="space-evenly" alignItems="center">
-            <Button onClick={() => handlePositionChange('back', 0)}><img src={truck_back} alt='backside of truck' /></Button>
-            <Button onClick={() => handlePositionChange('front', 0)}><img src={truck_front} alt='frontside of truck' /></Button>
+            <Button disableRipple onClick={() => handlePositionChange('back', 0)}>
+            <img
+              src={(position[0] == 'back') ? truck_back_active : truck_back}
+              alt='backside of truck'
+              />
+            </Button>
+            <Button disableRipple onClick={() => handlePositionChange('front', 0)}>
+              <img
+                src={(position[0] == 'front') ? truck_front_active : truck_front}
+                alt='frontside of truck'
+              />
+            </Button>
           </Stack>
           <Stack sx={{ backgroundColor: '#F5F5F5', borderRadius: 1 }} direction='row' justifyContent="space-evenly" alignItems="center" spacing={2}>
             <Button onClick={() => handlePositionChange('top', 1)}>Top</Button>

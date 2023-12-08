@@ -69,7 +69,7 @@ const Products = () => {
           />
           <CardActions>
             <Link to='/configurator'>
-              <Button sx={{ m: 1 }} variant="outlined">
+              <Button sx={{ m: 1 }} variant="contained" >
                 Open
               </Button>
             </Link>
