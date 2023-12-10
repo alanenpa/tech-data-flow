@@ -1,8 +1,9 @@
 import { Button, Card, CardContent, Grid, List, ListItem, Paper, TextField, Typography } from "@mui/material"
 import { Link, useLocation } from "react-router-dom"
+import Navbar from "./Navbar"
 import DeleteIcon from '@mui/icons-material/Delete'
 import RenderImage from "./RenderImage"
-import { useState } from "react"
+import React, { useState, Fragment } from "react"
 
 const Request = () => {
   /*let { state } = useLocation()
@@ -27,21 +28,25 @@ const Request = () => {
   }*/
 
   return (
-  <Grid item sx={{ p: 2 }}>
-    <Typography sx={{ pl: 1, pb: 2, pt: 5 }} variant='h6'>Contact details</Typography>
-    <TextField sx={{ width: '100%', mb: 3, mt: 3 }} label="Name" variant="outlined" />
-    <TextField sx={{ width: '100%', mb: 3 }} label="Email" variant="outlined" />
-    <TextField sx={{ width: '100%', mb: 3 }} label="Phone number" variant="outlined" />
-    <TextField sx={{ width: '100%', mb: 3 }} label="Company" variant="outlined" />
-    <TextField sx={{ width: '100%', mb: 3 }} label="Detailed request" multiline rows={5} />
-    <Grid item sx={{ mt: 5, mb: 3 }}>
-      <Link to='/finish'>
-        <Button sx={{ width: '100%' }} variant='contained'>
-          Send request
-        </Button>
-      </Link>
-    </Grid>
-  </Grid>
+    <Fragment>
+      <Navbar/>
+        <Grid item sx={{ p: 2 }}>
+          <Typography variant='h6'>Contact details</Typography>
+          <TextField sx={{ width: '100%', mb: 3, mt: 5 }} label="Name" variant="outlined" />
+          <TextField sx={{ width: '100%', mb: 3 }} label="Email" variant="outlined" />
+          <TextField sx={{ width: '100%', mb: 3 }} label="Phone number" variant="outlined" />
+          <TextField sx={{ width: '100%', mb: 3 }} label="Company" variant="outlined" />
+          <TextField sx={{ width: '100%', mb: 3 }} label="Detailed request" multiline rows={5} />
+          <Grid item sx={{ mt: 5, mb: 3 }}>
+            <Link to='/finish'>
+              <Button sx={{ width: '100%' }} variant='contained'>
+                Send request
+              </Button>
+            </Link>
+          </Grid>
+        </Grid>
+    </Fragment>
+
 
   )
 }
