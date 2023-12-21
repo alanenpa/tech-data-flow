@@ -1,0 +1,9 @@
+/* Informations.css */
+.custom-carousel .carousel .thumbs-wrapper {
+    display: none; /* Hide the thumbs */
+  }
+  
+  .custom-carousel .carousel {
+    background: none; /* Set to 'none' or your desired background color */
+  }
+  
