@@ -26,8 +26,6 @@ import WarrantyIcon from '../assets/specs icons/warranty.svg';
 
 import SettingsIcon from '@mui/icons-material/Settings'
 
-
-
 const Informations = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -237,6 +235,7 @@ const Informations = () => {
       <div>
         <Accordion />
       </div>
+      <Typography variant='h6' sx={{ p: 2, pb: 0, fontStyle: 'italic' }}>Recommended for you</Typography>
       <Card sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px', borderRadius: '10px', boxShadow: 'none' }}>
             <CardHeader
               avatar={<SettingsIcon />}
