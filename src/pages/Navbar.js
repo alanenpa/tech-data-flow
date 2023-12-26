@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import Drawer from '@mui/material/Drawer';
 import { Link } from 'react-router-dom';
 
-const pages = [['Home', ''], ['Wide', 'products'], ['Spot', 'products'], ['Hybrid', 'products'], ['Configurator', 'configurator']];
+const pages = [['Home', ''], ['Wide', 'informations'], ['Spot', 'informations'], ['Hybrid', 'informations'], ['Configurator', 'configurator']];
 
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
