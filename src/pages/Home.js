@@ -40,7 +40,7 @@ const Home = () => {
           </Typography>
         </Grid>
         <Grid item alignItems='center' sx={{ my: 3 }}>
-          <Link to='/products'>
+          <Link to='/informations'>
             <Button sx={{ m: 1 }} variant="contained">
               Explore products
             </Button>
