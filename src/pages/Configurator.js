@@ -38,12 +38,28 @@ const Configurator = () => {
     setSelectedType(type)
   }
 
-  const handlePositionChange = (value, index) => {
-    console.log(position)
-    //if (position[index] === value) return
+  const handlePositionChange = (value1, value2) => {
     let newPosition = position.slice()
-    newPosition[index] = value
-    console.log(newPosition)
+    if (value1 === 'front' || value1 === 'back') {
+      newPosition[0] = value1
+    } else if (value1 === 'top' || value1 === 'bottom') {
+      newPosition[1] = value1
+    } else if (value1 === 'left' || value1 === 'right') {
+      newPosition[2] = value1
+    } else {
+      console.log('invalid value1')
+    }
+    if (value2) {
+      if (value2 === 'front' || value2 === 'back') {
+        newPosition[0] = value2
+      } else if (value2 === 'top' || value2 === 'bottom') {
+        newPosition[1] = value2
+      } else if (value2 === 'left' || value2 === 'right') {
+        newPosition[2] = value2
+      } else {
+        console.log('invalid value2')
+      }
+    }
     setPosition(newPosition)
   }
 
@@ -59,8 +75,8 @@ const Configurator = () => {
   const alreadyExists = (newLight) => {
     return lightsList.some(existingLight =>
       existingLight.position.every((value, index) => value === newLight.position[index])
-    );
-  };  
+    )
+  }
 
   const removeLight = (index) => {
     const newList = lightsList.filter((light, i) =>
@@ -71,7 +87,7 @@ const Configurator = () => {
 
   return (
     <Fragment>
-      <Navbar/>
+      <Navbar />
       <Grid container sx={{ width: '100%', m: 0 }} direction='column' alignItems='center'>
         <Paper elevation={0} sx={{ width: '100%' }}>
           <Grid item sx={{ p: 2 }}>
@@ -120,119 +136,119 @@ const Configurator = () => {
               Position
             </Typography>
             <Stack sx={{ p: 1, mb: 2 }} direction='row' justifyContent="space-evenly" alignItems="center">
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <Button disableRipple onClick={() => handlePositionChange('front', 0)}>
-                <div style={{ paddingRight: '13px', paddingTop: '21px' }}>
-                  <img
-                    src={(position[0] === 'front') ? box_active : box}
-                    alt='frontside of truck'
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <Button disableRipple onClick={() => handlePositionChange('front')}>
+                  <div style={{ paddingRight: '13px', paddingTop: '21px' }}>
+                    <img
+                      src={(position[0] === 'front') ? box_active : box}
+                      alt='frontside of truck'
+                    />
+                  </div>
+                  <div>
+                    <img style={{ paddingRight: '0px' }}
+                      src={(position[0] === 'front') ? line_active : line}
+                    />
+                  </div>
+                </Button>
+                <div style={{ margin: '0px' }}>
+                  <img style={{ width: '88px', height: '67px' }}
+                    src={truck}
                   />
                 </div>
-                <div>
-                  <img style={{ paddingRight: '0px' }}
-                    src={(position[0] === 'front') ? line_active : line}
-                  />
-                </div>
-              </Button>
-              <div style={{ margin: '0px' }}>
-                <img style={{ width: '88px', height: '67px' }}
-                  src={truck}
-                />
+                <Button disableRipple onClick={() => handlePositionChange('back')}>
+                  <div>
+                    <img style={{ paddingRight: '0px' }}
+                      src={(position[0] === 'back') ? line_active : line}
+                    />
+                  </div>
+                  <div style={{ paddingLeft: '13px', paddingTop: '21px' }}>
+                    <img
+                      src={(position[0] === 'back') ? box_active : box}
+                      alt='backside of truck'
+                    />
+                  </div>
+                </Button>
               </div>
-              <Button disableRipple onClick={() => handlePositionChange('back', 0)}>
+            </Stack>
+
+            <Stack sx={{ borderRadius: 1 }} direction='row' justifyContent="space-evenly" alignItems="center" spacing={7}>
+              <Button disableRipple onClick={() => {handlePositionChange('top', 'left')}}>
                 <div>
-                  <img style={{ paddingRight: '0px' }}
-                    src={(position[0] === 'back') ? line_active : line}
-                  />
-                </div>
-                <div style={{ paddingLeft: '13px', paddingTop: '21px' }}>
                   <img
-                    src={(position[0] === 'back') ? box_active : box}
+                    src={(position[1] === 'top' && position[2] === 'left') ? box_active : box}
                     alt='backside of truck'
                   />
                 </div>
               </Button>
+              <Button disableRipple onClick={() => {handlePositionChange('top', 'right')}}>
+                <div>
+                  <img
+                    src={(position[1] === 'top' && position[2] === 'right') ? box_active : box}
+                    alt='backside of truck'
+                  />
+                </div>
+              </Button>
+            </Stack>
+
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingBottom: '0px' }}>
+              <img
+                src={(position[0] === 'back') ? truck_back : truck_front}
+                alt='backside of truck'
+                style={{ width: '40%', height: '40%', objectFit: 'cover' }}
+              />
             </div>
-          </Stack>
 
-          <Stack sx={{ borderRadius: 1 }} direction='row' justifyContent="space-evenly" alignItems="center" spacing={7}>
-            <Button disableRipple onClick={() => {handlePositionChange('top', 1);handlePositionChange('left', 2)}}>
-            <div>
-                <img
-                  src={(position[1] === 'top' && position[2] === 'left') ? box_active : box}
-                  alt='backside of truck'
-                />
-              </div>
-            </Button>
-            <Button disableRipple onClick={() => {handlePositionChange('top', 1);handlePositionChange('right', 2)}}>
-              <div>
-                <img
-                  src={(position[1] === 'top' && position[2] === 'right') ? box_active : box}
-                  alt='backside of truck'
-                />
-              </div>
-            </Button>
-          </Stack>
+            <Stack sx={{ borderRadius: 1, pt: 1 }} direction='row' justifyContent="space-evenly" alignItems="center" spacing={7}>
+              <Button disableRipple onClick={() => {handlePositionChange('bottom', 'left')}}>
+                <div>
+                  <img
+                    src={(position[1] === 'bottom' && position[2] === 'left') ? box_active : box}
+                    alt='backside of truck'
+                  />
+                </div>
+              </Button>
+              <Button disableRipple onClick={() => {handlePositionChange('bottom', 'right')}}>
+                <div>
+                  <img
+                    src={(position[1] === 'bottom' && position[2] === 'right') ? box_active : box}
+                    alt='backside of truck'
+                  />
+                </div>
+              </Button>
+            </Stack>
 
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingBottom: '0px' }}>
-            <img
-              src={(position[0] === 'back') ? truck_back : truck_front}
-              alt='backside of truck'
-              style={{ width: '40%', height: '40%', objectFit: 'cover' }}
-            />
-          </div>
-
-          <Stack sx={{ borderRadius: 1, pt: 1 }} direction='row' justifyContent="space-evenly" alignItems="center" spacing={7}>
-            <Button disableRipple onClick={() => {handlePositionChange('bottom', 1);handlePositionChange('left', 2)}}>
-            <div>
-                <img
-                  src={(position[1] === 'bottom' && position[2] === 'left') ? box_active : box}
-                  alt='backside of truck'
-                />
-              </div>
-            </Button>
-            <Button disableRipple onClick={() => {handlePositionChange('bottom', 1);handlePositionChange('right', 2)}}>
-              <div>
-                <img
-                  src={(position[1] === 'bottom' && position[2] === 'right') ? box_active : box}
-                  alt='backside of truck'
-                />
-              </div>
-            </Button>
-          </Stack>
-       
-          </Grid> 
+          </Grid>
           <Grid item sx={{ p: 2, pt: 4 }}>
             <Typography variant='h6' sx={{ pl: 1, pb: 1 }}>
               Preview
             </Typography>
           </Grid>
           <RenderImage lightsList={lightsList} />
-          <Configurations lightsList={lightsList} removeLight={removeLight} />       
+          <Configurations lightsList={lightsList} removeLight={removeLight} />
           <Grid container justifyContent="space-between" alignItems="center" sx={{ mt: 5, mb: 8 }}>
-          <Grid item sx={{ flex: 1, pl: 2, pb: 1, pr: 2 }}>
-            <Button
-              onClick={() => handleAddConfiguration()}
-              variant='contained'
-              style={{ width: '100%', paddingLeft: '20px', fontSize: '11px' }}
-            >
-              Add +
-            </Button>
-          </Grid>
-          <Grid item sx={{ flex: 1, pr: 2, pb: 1, pl: 1 }}>
-            <Link to='/request' state={{ lightsList }}>
+            <Grid item sx={{ flex: 1, pl: 2, pb: 1, pr: 2 }}>
               <Button
+                onClick={() => handleAddConfiguration()}
                 variant='contained'
-                style={{ width: '100%', paddingRight: '20px', fontSize: '11px' }}
+                style={{ width: '100%', paddingLeft: '20px', fontSize: '11px' }}
               >
-                Request a quote
+                Add +
               </Button>
-            </Link>
+            </Grid>
+            <Grid item sx={{ flex: 1, pr: 2, pb: 1, pl: 1 }}>
+              <Link to='/request' state={{ lightsList }}>
+                <Button
+                  variant='contained'
+                  style={{ width: '100%', paddingRight: '20px', fontSize: '11px' }}
+                >
+                  Request a quote
+                </Button>
+              </Link>
+            </Grid>
           </Grid>
-        </Grid>
         </Paper>
       </Grid>
-      </Fragment>
+    </Fragment>
   )
 }
 

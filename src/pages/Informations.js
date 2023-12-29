@@ -140,6 +140,7 @@ const Informations = () => {
     warranty: (
       <img
         src={WarrantyIcon}
+        alt="Warranty"
         style={{ width: '24px', height: '24px', marginRight: '8px', marginTop: '10px' }}
       />
     ),
@@ -217,16 +218,18 @@ const Informations = () => {
                 Distance range graphs
               </Typography>
             </div>
-            <div style={{ position: 'relative', width: '100%', height: '100%', maxWidth: '380px', maxHeight: '380px', paddingBottom: '20px'}}> 
+            <div style={{ position: 'relative', width: '100%', height: '100%', maxWidth: '380px', maxHeight: '380px', paddingBottom: '20px' }}>
               <img
                 src={graphMapping[currentLight.type]}
-                style={{ width: '100%', height: '100%', objectFit: 'cover'}}
+                alt='light type'
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
             </div>
-            <div style={{ position: 'relative', width: '100%', height: '100%', maxWidth: '380px', maxHeight: '380px'}}> 
+            <div style={{ position: 'relative', width: '100%', height: '100%', maxWidth: '380px', maxHeight: '380px' }}>
               <img
                 src={color_graph}
-                style={{ width: '100%', height: '100%', objectFit: 'cover'}}
+                alt='color graph'
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
             </div>
           </CardContent>
@@ -237,19 +240,19 @@ const Informations = () => {
       </div>
       <Typography variant='h6' sx={{ p: 2, pb: 0, fontStyle: 'italic' }}>Recommended for you</Typography>
       <Card sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px', borderRadius: '10px', boxShadow: 'none' }}>
-            <CardHeader
-              avatar={<SettingsIcon />}
-              title='Configurator'
-              subheader='Customize your light'
-            />
-            <CardActions>
-              <Link to='/configurator'>
-                <Button sx={{ m: 1 }} variant="contained" >
-                  Open
-                </Button>
-              </Link>
-            </CardActions>
-          </Card>
+        <CardHeader
+          avatar={<SettingsIcon />}
+          title='Configurator'
+          subheader='Customize your light'
+        />
+        <CardActions>
+          <Link to='/configurator'>
+            <Button sx={{ m: 1 }} variant="contained" >
+              Open
+            </Button>
+          </Link>
+        </CardActions>
+      </Card>
     </Fragment>
   );
 };
