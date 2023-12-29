@@ -1,6 +1,6 @@
 ## To do:
 - [ ] 3D model to home page
-- [ ] Fix position logic in configurator
+- [x] Fix position logic in configurator
 - [ ] Add position texts to configurator
 - [ ] Clean up and rename files
 - [ ] Accessories to request page
