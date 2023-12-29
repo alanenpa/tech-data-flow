@@ -1,0 +1,12 @@
+## To do:
+- [ ] 3D model to home page
+- [ ] Fix position logic in configurator
+- [ ] Add position texts to configurator
+- [ ] Clean up and rename files
+- [ ] Accessories to request page
+- [ ] Real-life images to informations page
+- [ ] Test files downloadable 
+- [ ] Create a custom theme with the right button color
+- [ ] Update finish page (ui and link to home page)
+- [ ] Pass the list of configurations to the request page
+- [ ] Change light preview to more transparent photos
