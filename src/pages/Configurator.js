@@ -3,15 +3,18 @@ import { Fragment } from 'react'
 
 import { Button, Grid, Paper, Stack, Typography } from '@mui/material'
 import RenderImage from './RenderImage'
+import SelectedLight from './SelectedLight'
 import Configurations from './Configurations'
+import { Unstable_Popup as BasePopup } from '@mui/base/Unstable_Popup';
+import { styled } from '@mui/system';
 
 import box from '../assets/box.svg'
 import box_active from '../assets/box-active.svg'
 import line from '../assets/line.svg'
 import line_active from '../assets/line-active.svg'
-import truck from '../assets/Truck.png'
-import truck_front from '../assets/Position_Truck front.svg'
-import truck_back from '../assets/Position_Truck back.svg'
+import truck from '../assets/truck position icons/Position_side.svg'
+import truck_front from '../assets/truck position icons/Position_front.svg'
+import truck_back from '../assets/truck position icons/Position_back.svg'
 
 import hybrid from '../assets/button_hybrid-light-off.svg'
 import hybrid_hover from '../assets/button_hybrid-light- over.svg'
@@ -25,14 +28,40 @@ import wide from '../assets/button_wide-light-off.svg'
 import wide_hover from '../assets/button_wide-light-over.svg'
 import wide_active from '../assets/button_wide-light-on.svg'
 
+import box_front from '../assets/truck position icons/Position_front off.svg'
+import box_front_active from '../assets/truck position icons/Position_front on.svg'
+import box_back from '../assets/truck position icons/Position_back off.svg'
+import box_back_active from '../assets/truck position icons/Position_back on.svg'
+
+import box_top_left from '../assets/truck position icons/Position_top left off.svg'
+import box_top_left_active from '../assets/truck position icons/Position_top left on.svg'
+import box_top_right from '../assets/truck position icons/Position_top right off.svg'
+import box_top_right_active from '../assets/truck position icons/Position_top right on.svg'
+
+import box_bottom_left from '../assets/truck position icons/Position_low left off.svg'
+import box_bottom_left_active from '../assets/truck position icons/Position_low left on.svg'
+import box_bottom_right from '../assets/truck position icons/Position_low right off.svg'
+import box_bottom_right_active from '../assets/truck position icons/Position_low right on.svg'
+
+
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from './Navbar'
+import SimplePopup from './SimplePopup'
 
 const Configurator = () => {
-  const [selectedType, setSelectedType] = useState('wide')
-  const [position, setPosition] = useState(['back', 'top', 'left'])
+  const [selectedType, setSelectedType] = useState('')
+  const [position, setPosition] = useState(['', '', ''])
   const [lightsList, setLightsList] = useState([])
+  const [isPopupOpen, setPopupOpen] = useState(false)
+  const [popUpMessage, setPopUpMessage] = useState("Please select a type and position!")
+
+  const preventAdd = () => {
+    if (selectedType==="" || position[0]==="" || position[1]==="" || position[2]==="") {
+      return true
+    }
+    return false
+   }
 
   const handleTypeChange = (type) => {
     setSelectedType(type)
@@ -68,8 +97,21 @@ const Configurator = () => {
       type: selectedType,
       position: position
     }
-    if (alreadyExists(newLight)) return
+
+    if (preventAdd() === true) {
+      setPopUpMessage("Please select a type and position")
+      togglePopup()
+      return
+  }
+
+    if (alreadyExists(newLight)) {
+      setPopUpMessage("Position is already occupied")
+      togglePopup()
+      return}
+      
     setLightsList([...lightsList, newLight])
+    setSelectedType("")
+    setPosition(["", "", ""])
   }
 
   const alreadyExists = (newLight) => {
@@ -85,13 +127,21 @@ const Configurator = () => {
     setLightsList(newList)
   }
 
+  const togglePopup = () => {
+    setPopupOpen(true)
+    setTimeout(() => {
+      setPopupOpen(false)
+    }, 1500)
+  }
+
   return (
     <Fragment>
+      <SimplePopup isOpen={isPopupOpen} message={popUpMessage}/>
       <Navbar />
       <Grid container sx={{ width: '100%', m: 0 }} direction='column' alignItems='center'>
         <Paper elevation={0} sx={{ width: '100%' }}>
-          <Grid item sx={{ p: 2 }}>
-            <Typography fontSize={18}>Select your products to preview the light effect</Typography>
+          <Grid item sx={{ p: 2, pl: 3, pb: 1 }}>
+            <Typography fontSize={18}>Select a type and position for your light:</Typography>
           </Grid>
           <Grid item sx={{ p: 2 }}>
             <Typography variant='h6' sx={{ pl: 1, pb: 1 }}>
@@ -135,95 +185,88 @@ const Configurator = () => {
             <Typography variant='h6' sx={{ pl: 1, pb: 1 }}>
               Position
             </Typography>
-            <Stack sx={{ p: 1, mb: 2 }} direction='row' justifyContent="space-evenly" alignItems="center">
+          <Stack sx={{ p: 1, mb: 2 }} direction='row' justifyContent="center" alignItems="center">
+            <Button disableRipple onClick={() => handlePositionChange('front')}>
               <div style={{ display: 'flex', alignItems: 'center' }}>
-                <Button disableRipple onClick={() => handlePositionChange('front')}>
-                  <div style={{ paddingRight: '13px', paddingTop: '21px' }}>
-                    <img
-                      src={(position[0] === 'front') ? box_active : box}
-                      alt='frontside of truck'
-                    />
-                  </div>
-                  <div>
-                    <img style={{ paddingRight: '0px' }}
-                      src={(position[0] === 'front') ? line_active : line}
-                    />
-                  </div>
-                </Button>
-                <div style={{ margin: '0px' }}>
-                  <img style={{ width: '88px', height: '67px' }}
-                    src={truck}
+                <div style={{ width: '60px', paddingRight: '19px', paddingTop: '20px' }}>
+                  <img
+                    src={(position[0] === 'front') ? box_front_active : box_front}
+                    alt='frontside of truck'
                   />
                 </div>
-                <Button disableRipple onClick={() => handlePositionChange('back')}>
-                  <div>
-                    <img style={{ paddingRight: '0px' }}
-                      src={(position[0] === 'back') ? line_active : line}
-                    />
-                  </div>
-                  <div style={{ paddingLeft: '13px', paddingTop: '21px' }}>
-                    <img
-                      src={(position[0] === 'back') ? box_active : box}
-                      alt='backside of truck'
-                    />
-                  </div>
-                </Button>
               </div>
-            </Stack>
+            </Button>
+              <div style={{ display: 'flex', alignItems: 'center', marginLeft: '10px', marginRight: '10px' }}>
+                <img style={{ width: '150px', objectFit: 'contain' }} src={truck} alt='truck' />
+              </div>
+            <Button disableRipple onClick={() => handlePositionChange('back')}>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <div style={{ width: '60px', paddingLeft: '19px', paddingTop: '20px' }}>
+                  <img
+                    src={(position[0] === 'back') ? box_back_active : box_back}
+                    alt='backside of truck'
+                  />
+                </div>
+              </div>
+            </Button>
+          </Stack>
 
-            <Stack sx={{ borderRadius: 1 }} direction='row' justifyContent="space-evenly" alignItems="center" spacing={7}>
+          <Stack sx={{ borderRadius: 1, padding: '10px' }} direction='row' justifyContent="space-between" alignItems="center">
+            <Stack sx={{ alignItems: 'center' }} direction='column'>
               <Button disableRipple onClick={() => {handlePositionChange('top', 'left')}}>
-                <div>
+                <div style={{ width: '60px' }}>
                   <img
-                    src={(position[1] === 'top' && position[2] === 'left') ? box_active : box}
-                    alt='backside of truck'
+                    src={(position[1] === 'top' && position[2] === 'left') ? box_top_left_active : box_top_left}
+                    alt='top left box'
                   />
                 </div>
               </Button>
-              <Button disableRipple onClick={() => {handlePositionChange('top', 'right')}}>
-                <div>
+              <div style={{ height: '10px' }}></div>
+              <Button disableRipple onClick={() => {handlePositionChange('bottom', 'left')}}>
+                <div style={{ width: '60px' }}>
                   <img
-                    src={(position[1] === 'top' && position[2] === 'right') ? box_active : box}
-                    alt='backside of truck'
+                    src={(position[1] === 'bottom' && position[2] === 'left') ? box_bottom_left_active : box_bottom_left}
+                    alt='bottom left box'
                   />
                 </div>
               </Button>
             </Stack>
 
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingBottom: '0px' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginLeft: '10px', marginRight: '10px' }}>
               <img
                 src={(position[0] === 'back') ? truck_back : truck_front}
                 alt='backside of truck'
-                style={{ width: '40%', height: '40%', objectFit: 'cover' }}
+                style={{ height: '150px', objectFit: 'contain' }}
               />
             </div>
 
-            <Stack sx={{ borderRadius: 1, pt: 1 }} direction='row' justifyContent="space-evenly" alignItems="center" spacing={7}>
-              <Button disableRipple onClick={() => {handlePositionChange('bottom', 'left')}}>
-                <div>
+            <Stack sx={{ alignItems: 'center' }} direction='column'>
+              <Button disableRipple onClick={() => {handlePositionChange('top', 'right')}}>
+                <div style={{ width: '60px' }}>
                   <img
-                    src={(position[1] === 'bottom' && position[2] === 'left') ? box_active : box}
-                    alt='backside of truck'
+                    src={(position[1] === 'top' && position[2] === 'right') ? box_top_right_active : box_top_right}
+                    alt='top right box'
                   />
                 </div>
               </Button>
+              <div style={{ height: '10px' }}></div>
               <Button disableRipple onClick={() => {handlePositionChange('bottom', 'right')}}>
-                <div>
+                <div style={{ width: '60px' }}>
                   <img
-                    src={(position[1] === 'bottom' && position[2] === 'right') ? box_active : box}
-                    alt='backside of truck'
+                    src={(position[1] === 'bottom' && position[2] === 'right') ? box_bottom_right_active : box_bottom_right}
+                    alt='bottom right box'
                   />
                 </div>
               </Button>
             </Stack>
-
+          </Stack>
           </Grid>
           <Grid item sx={{ p: 2, pt: 4 }}>
             <Typography variant='h6' sx={{ pl: 1, pb: 1 }}>
               Preview
             </Typography>
           </Grid>
-          <RenderImage lightsList={lightsList} />
+          <RenderImage lightsList={lightsList} selected={{type: selectedType, position: position}} alreadyExists={alreadyExists({type: selectedType, position: position})}/>
           <Configurations lightsList={lightsList} removeLight={removeLight} />
           <Grid container justifyContent="space-between" alignItems="center" sx={{ mt: 5, mb: 8 }}>
             <Grid item sx={{ flex: 1, pl: 2, pb: 1, pr: 2 }}>

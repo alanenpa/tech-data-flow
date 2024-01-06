@@ -12,7 +12,6 @@ import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 
 const AccordionLine = ({ title, last }) => {
   const handleDownload = () => {
-    // Add your download logic here
     console.log('Download button clicked');
   };
 
@@ -26,7 +25,7 @@ const AccordionLine = ({ title, last }) => {
         pb: last ? 0 : 3,
         border: 0,
         borderRadius: 1,
-        borderColor: 'primary.main', // You can customize the borderColor if needed
+        borderColor: 'primary.main',
       }}
     >
       <Typography sx={{ maxWidth: '45%' }}>{title}</Typography>
@@ -44,6 +43,15 @@ const AccordionLine = ({ title, last }) => {
 export default function BasicAccordion() {
   return (
     <div>
+      <Accordion sx={{ boxShadow: '0' }}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel2a-content"
+          id="panel2a-header"
+        >
+          <Typography variant="h6" sx={{ fontWeight: '500' }}>Real life images</Typography>
+        </AccordionSummary>
+      </Accordion>
       <Accordion sx={{ boxShadow: '0' }}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}

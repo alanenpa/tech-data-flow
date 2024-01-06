@@ -9,6 +9,8 @@ import Button from '@mui/material/Button';
 import Drawer from '@mui/material/Drawer';
 import { Link } from 'react-router-dom';
 
+import logo from '../assets/5watts_logo_white.png'
+
 const pages = [['Home', ''], ['Wide', 'informations'], ['Spot', 'informations'], ['Hybrid', 'informations'], ['Configurator', 'configurator']];
 
 function Navbar() {
@@ -37,7 +39,7 @@ function Navbar() {
               color="inherit"
               sx={{
                 display: { xs: 'block', md: 'none' },
-                position: 'absolute', // Add this line
+                position: 'absolute',
               }}
             >
               <MenuIcon />
@@ -47,22 +49,25 @@ function Navbar() {
       </AppBar>
 
       <Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer(false)} sx={{m: 0, p: 0}}>
+
         <Box sx={{ width: '100vw', height: '50px', textAlign: 'center', mt: 0 }} role="presentation" onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)}>
-          {/* Menu Button in the Drawer */}
           <IconButton
             size="large"
             aria-label="close drawer"
             edge="start"
             onClick={toggleDrawer(false)}
             color="inherit"
-            sx={{ position: 'absolute', top: '16px', left: '16px' }}
+            sx={{ position: 'absolute', top: '11px', left: '23px' }}
           >
             <MenuIcon />
           </IconButton>
           </Box>
-          <Box>
 
-          {/* Your drawer content */}
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingTop: '20px' }}>
+            <img src={logo} style={{ width: '300px', height: '100px', position: 'absolute', top: '10px', left: '65px' }} />
+          </div>
+
+          <Box sx={{pt: '40px'}}>
           {pages.map((page) => (
             <Button key={page} component={Link} to={`/${page[1]}`} fullWidth sx={{ color: 'black', pt: 2, fontSize: 17 }}>
               {page[0]}

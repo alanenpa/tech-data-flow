@@ -1,0 +1,10 @@
+{
+    "horizontalFrames": 18,
+    "horizontalStartingIndex": 9,
+    "horizontalWrap": true,
+    "name": "LED.37",
+    "type": "KeyShotXR",
+    "verticalFrames": 9,
+    "verticalStartingIndex": 6,
+    "verticalWrap": false
+}

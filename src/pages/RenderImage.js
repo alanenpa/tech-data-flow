@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
+import SelectedLight from './SelectedLight';
 
-import background from '../assets/lights/background.svg';
+import background from '../assets/transparent lights/Zaurak 4-30_all_20231215_Background grid .svg';
 
 import wftr from '../assets/lights/wide front top right.svg';
 import wftl from '../assets/lights/wide front top left.svg';
@@ -41,15 +42,15 @@ function RenderLight({ position }) {
     if (front === "front") {
       if (top === "top") {
         if (left === "left") {
-          var image = wftl
-        } else {
           var image = wftr
+        } else {
+          var image = wftl
         }
       } else {
         if (left === "left") {
-          var image = wfbl
-        } else {
           var image = wfbr
+        } else {
+          var image = wfbl
         }
       }
     } else {
@@ -71,15 +72,15 @@ function RenderLight({ position }) {
     if (front === "front") {
       if (top === "top") {
         if (left === "left") {
-          var image = sftl
-        } else {
           var image = sftr
+        } else {
+          var image = sftl
         }
       } else {
         if (left === "left") {
-          var image = sfbl
-        } else {
           var image = sfbr
+        } else {
+          var image = sfbl
         }
       }
     } else {
@@ -101,15 +102,15 @@ function RenderLight({ position }) {
     if (front === "front") {
       if (top === "top") {
         if (left === "left") {
-          var image = hftl
-        } else {
           var image = hftr
+        } else {
+          var image = hftl
         }
       } else {
         if (left === "left") {
-          var image = hfbl
-        } else {
           var image = hfbr
+        } else {
+          var image = hfbl
         }
       }
     } else {
@@ -129,9 +130,6 @@ function RenderLight({ position }) {
     }
   
   }
-
-  // säädä maxWidth ja maxHeight tarpeen mukaan, aseta tiedostossa
-  // kaikki tiedoston maxWidthit ja maxHeightit samoiksi
 
   return (
     <div
@@ -160,10 +158,8 @@ function RenderLight({ position }) {
   );
 }
 
-const RenderImage = ({ lightsList }) => {
-
-  // input muotoa ["spot front top right", "hybrid back bottom left", "wide front top left"] jne
-
+const RenderImage = ({ lightsList, selected, alreadyExists }) => {
+  
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <div style={{ position: 'relative', width: '100%', height: '100%', maxWidth: '380px', maxHeight: '380px' }}> 
@@ -171,6 +167,7 @@ const RenderImage = ({ lightsList }) => {
           src={background}
           style={{ width: '100%', height: '100%', objectFit: 'cover'}}
         />
+      <SelectedLight position={selected} alreadyExists={alreadyExists}/>
       {lightsList.map((light, index) => (
         <RenderLight key={index} position={light} />
       ))}

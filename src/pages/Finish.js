@@ -15,7 +15,7 @@ const Finish = () => {
         <Typography variant='subtitle1' color="text.secondary">We will review your information and get back within 24 - 48 hours.</Typography>
       </Grid>
       <Grid item sx={{ mt: 5 }} display='flex' justifyContent="center">
-        <Link to='/products'><Button variant='contained'>Got it!</Button></Link>
+        <Link to='/'><Button variant='contained'>Got it!</Button></Link>
       </Grid>
     </Grid>
   )
