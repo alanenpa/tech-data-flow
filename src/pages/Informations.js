@@ -223,16 +223,17 @@ const Informations = () => {
                 ))}
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', margin: 'auto' }}>
+              
         <div style={{ position: 'relative', width: '100%' }}>
           <img
             src={graphMapping[currentLight.type]}
-            alt='light type'
+            alt='light range'
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
 
           <img
             src={realImageMapping[currentLight.type]}
-            alt='color graph'
+            alt='real image'
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
 
@@ -246,9 +247,6 @@ const Informations = () => {
 
           </CardContent>
         </Card>
-      </div>
-      <div>
-        <Accordion />
       </div>
       <Card sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px', pt: '0px', borderRadius: '10px', boxShadow: 'none' }}>
         <CardHeader
@@ -264,6 +262,9 @@ const Informations = () => {
           </Link>
         </CardActions>
       </Card>
+      <div>
+        <Accordion />
+      </div>
     </Fragment>
   );
 };

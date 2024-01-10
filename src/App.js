@@ -1,12 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import {Grid} from "@mui/material"
+import { Grid, ThemeProvider, createMuiTheme } from "@mui/material"
 import Home from "./pages/Home"
 import Configurator from "./pages/Configurator"
 import Request from "./pages/Request"
 import Finish from "./pages/Finish"
 import Informations from "./pages/Informations"
 
-import { ThemeProvider, createMuiTheme } from "@mui/material"
+import './style.css'
 
 const App = () => {
   const customTheme = createMuiTheme({
@@ -16,7 +16,7 @@ const App = () => {
       },
     },
     typography: {
-      "fontFamily": `"Roboto"`
+      "fontFamily": "Roboto, sans-serif"
     }
   })
 
