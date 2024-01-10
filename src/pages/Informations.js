@@ -256,7 +256,7 @@ const Informations = () => {
         />
         <CardActions>
           <Link to='/configurator'>
-            <Button sx={{ m: 1 }} variant="contained" >
+            <Button sx={{ m: 1, width: '120px' }} variant="contained" >
               Open
             </Button>
           </Link>
