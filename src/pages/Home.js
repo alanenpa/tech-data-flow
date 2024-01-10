@@ -1,24 +1,33 @@
-import { Box, Button, Card, CardActions, CardHeader, Grid, Typography } from "@mui/material"
+import { Fragment } from "react"
 import { Link } from "react-router-dom"
+
+import { Box, Button, Card, CardActions, CardHeader, Grid, Typography } from "@mui/material"
+import SettingsIcon from '@mui/icons-material/Settings'
+
+import Model from "./Model"
 import Navbar from "./Navbar"
+
 import reliability from '../assets/homepage/reliability.svg'
 import resistance from '../assets/homepage/resistance.svg'
 import weather_resistance from '../assets/homepage/weather_resistance.svg'
 import quality_assurance from '../assets/homepage/quality_assurance.svg'
-import SettingsIcon from '@mui/icons-material/Settings'
 
 const Home = () => {
   return (
-    <div>
-      <Navbar />
-      <Grid container sx={{ m: 'auto', p: 'auto', width: '100%' }} display='flex' direction='column' alignItems='center' justifyContent="center" rowSpacing={3}>
+    <Fragment>
+      <Navbar/>
+      <div style={{ position: 'absolute', top: '0%', zIndex: -1 }}>
+      <Grid container sx={{ m: 'auto', p: 'auto', width: '100%', pt: 2, maxWidth: '430px' }} display='flex' direction='column' alignItems='center' justifyContent="center" rowSpacing={2}>
         <Grid item>
-          <Typography alignItems='center' variant='h5' sx={{ pt: 3 }}>
-            ZAURAC 4-30
-          </Typography>
+        <Typography variant='h6' sx={{paddingBottom: 3, fontSize: '30px'}} >
+          ZAURAC 4-30
+        </Typography>
         </Grid>
         <Grid item>
-          <Typography alignItems='center' variant='h6'>
+          <Model/>
+        </Grid>
+        <Grid item>
+          <Typography alignItems='center' variant='h5' sx={{paddingTop: 2, paddingBottom: 3}}>
             All-weather LED work light
           </Typography>
         </Grid>
@@ -33,13 +42,13 @@ const Home = () => {
             in all circumstances; especially during dusk and at dark.
             <br></br>
             <br></br>
-            The Zaurac 4-30 is a high-quality light, fabricated in Finland of Finnish components.
+            The Zaurac 4-30 is a high-quality light, fabricated in Finland from Finnish components.
             <br></br>
             <br></br>
             We offer a 3-year warranty on our lights.
           </Typography>
         </Grid>
-        <Grid item alignItems='center' sx={{ my: 3 }}>
+        <Grid item alignItems='center' sx={{ my: 2 }}>
           <Link to='/informations'>
             <Button sx={{ m: 1 }} variant="contained">
               Explore products
@@ -96,24 +105,25 @@ const Home = () => {
             ensuring quality and enabling lifecycle traceability.
           </Typography>
         </Grid>
+        <Grid item sx={{ p: 1, pt: 1, m: 1 }}>
+          <Card sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px', borderRadius: '10px', boxShadow: 'none' }}>
+            <CardHeader
+              avatar={<SettingsIcon />}
+              title='Configurator'
+              subheader='Customize your light'
+            />
+            <CardActions>
+              <Link to='/configurator'>
+                <Button sx={{ m: 1 }} variant="contained" >
+                  Open
+                </Button>
+              </Link>
+            </CardActions>
+          </Card>
+        </Grid>
       </Grid>
-      <Grid item sx={{ p: 1, pt: 3, m: 1 }}>
-        <Card sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px', borderRadius: '10px' }}>
-          <CardHeader
-            avatar={<SettingsIcon />}
-            title='Configurator'
-            subheader='Customize your light'
-          />
-          <CardActions>
-            <Link to='/configurator'>
-              <Button sx={{ m: 1 }} variant="contained" >
-                Open
-              </Button>
-            </Link>
-          </CardActions>
-        </Card>
-      </Grid>
-    </div>
+      </div>
+    </Fragment>
   )
 }
 

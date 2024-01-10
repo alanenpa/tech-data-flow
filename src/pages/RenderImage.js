@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
 import SelectedLight from './SelectedLight';
 
@@ -32,7 +31,6 @@ import hbbr from '../assets/lights/hybrid back bottom right.svg';
 import hbbl from '../assets/lights/hybrid back bottom left.svg';
 
 function RenderLight({ position }) {
-
   const type = position.type;
   const front = position.position[0];
   const top = position.position[1];
@@ -158,8 +156,7 @@ function RenderLight({ position }) {
   );
 }
 
-const RenderImage = ({ lightsList, selected, alreadyExists }) => {
-  
+const RenderImage = ({ lightsList, selected, alreadyExists }) => {  
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <div style={{ position: 'relative', width: '100%', height: '100%', maxWidth: '380px', maxHeight: '380px' }}> 

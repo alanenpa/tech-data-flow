@@ -16,7 +16,7 @@ const YoutubeEmbed = (props) => {
     };
   }, []);
 
-  const videoWidth = Math.floor(0.84 * windowWidth);
+  const videoWidth = Math.floor(Math.min((0.84 * windowWidth), (0.84 * 430)));
 
   return (
     <div className='video-responsive' style={{ marginBottom: '10px' }}>

@@ -3,17 +3,20 @@ import { Link } from 'react-router-dom'
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
 import { Button, Card, CardActions, CardContent, CardHeader, Typography, Box } from '@mui/material';
+import SettingsIcon from '@mui/icons-material/Settings'
 import Navbar from './Navbar';
 import Accordion from './Accordion';
 
 import wide from '../assets/Wide graphic.png';
 import spot from '../assets/Spot graphic.png';
 import hybrid from '../assets/Hybrid graphic.png';
-
+import wide_real from '../assets/wide.png'
+import spot_real from '../assets/spot_field-01.png'
+import hybrid_real from '../assets/hybrid-1-01.png'
 import wide_graph from '../assets/graphs/Zaurak Graphs_4-30 Wide.svg'
 import spot_graph from '../assets/graphs/Zaurak Graphs_4-30 Spot.svg'
 import hybrid_graph from '../assets/graphs/Zaurak Graphs_4-30 Hybrid.svg'
-import color_graph from '../assets/graphs/Zaurak Graphs color space_4-30 Color space_4-30 Color space.svg'
+import color_graph from '../assets/graphs/Zaurak Graphs_4-30 Color space.svg'
 
 import LuminousRatioIcon from '../assets/specs icons/luminous-ratio.svg';
 import LuminousFluxIcon from '../assets/specs icons/luminous-flux.svg';
@@ -23,8 +26,6 @@ import TemperatureRangeIcon from '../assets/specs icons/temperature-range.svg';
 import DimensionsIcon from '../assets/specs icons/dimensions.svg';
 import UsageIcon from '../assets/specs icons/usage.svg';
 import WarrantyIcon from '../assets/specs icons/warranty.svg';
-
-import SettingsIcon from '@mui/icons-material/Settings'
 
 const Informations = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -48,7 +49,7 @@ const Informations = () => {
     {
       type: 'Wide',
       info:
-        'Zaurac 4-30 with wide lens is primarily for small machines and solutions where the distance to illuminate is short. The beam is very wide and is even throughout, without any focus points. We recommend this work light in particular for small excavators (under 13 tons), maintenance vehicles and to forest machines and backhoes for close illumination.',
+        'Zaurac 4-30 with wide lens is primarily for small machines and solutions where the distance to illuminate is short. The beam is very wide and is even throughout, without any focus points. We recommend this work light in particular for small excavators (under 13 tons), maintenance vehicles and forest machines and backhoes for close-range illumination.',
       beamAngle: '37° × 28°',
       ...commonInfo,
     },
@@ -85,6 +86,12 @@ const Informations = () => {
     'Wide': wide_graph,
     'Spot': spot_graph,
     'Hybrid': hybrid_graph
+  }
+
+  const realImageMapping = {
+    'Wide': wide_real,
+    'Spot': spot_real,
+    'Hybrid': hybrid_real 
   }
 
   const technicalSpecIcons = {
@@ -152,7 +159,9 @@ const Informations = () => {
   return (
     <Fragment>
       <Navbar />
-      <Typography variant='h5' sx={{ textAlign: 'center', fontWeight: '700' }}>{currentLight.type} light</Typography>
+      <Typography variant='h6' sx={{ paddingBottom: 0, fontSize: '30px', textAlign: 'center' }}>
+        Zaurac 4-30 {currentLight.type}
+      </Typography>
       <div>
         <Carousel infiniteLoop showStatus={false} showThumbs={false} onChange={handleSlideChange}>
           <div>
@@ -213,33 +222,35 @@ const Informations = () => {
                   </Box>
                 ))}
             </div>
-            <div>
-              <Typography sx={{ fontWeight: '700', pt: 2, pb: 4 }} variant="h5">
-                Distance range graphs
-              </Typography>
-            </div>
-            <div style={{ position: 'relative', width: '100%', height: '100%', maxWidth: '380px', maxHeight: '380px', paddingBottom: '20px' }}>
-              <img
-                src={graphMapping[currentLight.type]}
-                alt='light type'
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              />
-            </div>
-            <div style={{ position: 'relative', width: '100%', height: '100%', maxWidth: '380px', maxHeight: '380px' }}>
-              <img
-                src={color_graph}
-                alt='color graph'
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              />
-            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', margin: 'auto' }}>
+        <div style={{ position: 'relative', width: '100%' }}>
+          <img
+            src={graphMapping[currentLight.type]}
+            alt='light type'
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+
+          <img
+            src={realImageMapping[currentLight.type]}
+            alt='color graph'
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+
+          <img
+            src={color_graph}
+            alt='color graph'
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+        </div>
+      </div>
+
           </CardContent>
         </Card>
       </div>
       <div>
         <Accordion />
       </div>
-      <Typography variant='h6' sx={{ p: 2, pb: 0, fontStyle: 'italic' }}>Recommended for you</Typography>
-      <Card sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px', borderRadius: '10px', boxShadow: 'none' }}>
+      <Card sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px', pt: '0px', borderRadius: '10px', boxShadow: 'none' }}>
         <CardHeader
           avatar={<SettingsIcon />}
           title='Configurator'

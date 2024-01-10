@@ -1,34 +1,41 @@
-import { useState, Fragment } from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
-import Drawer from '@mui/material/Drawer';
+import { useState, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
-import logo from '../assets/5watts_logo_white.png'
+import { AppBar, Box, Toolbar, IconButton,Container, Button, Drawer } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import logo from '../assets/5watts_logo_Grey.png';
 
-const pages = [['Home', ''], ['Wide', 'informations'], ['Spot', 'informations'], ['Hybrid', 'informations'], ['Configurator', 'configurator']];
+const pages = [['Home', ''], ['Products', 'informations'], ['Configurator', 'configurator']];
 
 function Navbar() {
-  const [anchorElNav, setAnchorElNav] = useState(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const toggleDrawer = (open) => () => {
     setIsDrawerOpen(open);
   };
-  
+
+  const handleButtonClick = () => {
+    setIsDrawerOpen(false);
+  };
+
+  const calculatedWidth = Math.min(430-130, (windowWidth - 130));
 
   return (
     <Fragment>
-      <AppBar position="static" sx={{ backgroundColor: 'white', color: 'black', boxShadow: 0, m: 0, p: 0 }}>
+      <AppBar position="static" sx={{ width: '20%', height:'30px', backgroundColor: 'white', color: 'black', boxShadow: 0, m: 0, p: 0 }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <IconButton
@@ -38,7 +45,7 @@ function Navbar() {
               onClick={toggleDrawer(true)}
               color="inherit"
               sx={{
-                display: { xs: 'block', md: 'none' },
+                display: { xs: 'block', md: 'block' },
                 position: 'absolute',
               }}
             >
@@ -48,9 +55,9 @@ function Navbar() {
         </Container>
       </AppBar>
 
-      <Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer(false)} sx={{m: 0, p: 0}}>
+      <Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer(false)} sx={{ m: 0, p: 0 }}>
 
-        <Box sx={{ width: '100vw', height: '50px', textAlign: 'center', mt: 0 }} role="presentation" onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)}>
+        <Box sx={{ width: '100vw', height: '50px', textAlign: 'center', mt: 0, maxWidth: 430 }} role="presentation" onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)}>
           <IconButton
             size="large"
             aria-label="close drawer"
@@ -61,19 +68,26 @@ function Navbar() {
           >
             <MenuIcon />
           </IconButton>
-          </Box>
+        </Box>
 
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingTop: '20px' }}>
-            <img src={logo} style={{ width: '300px', height: '100px', position: 'absolute', top: '10px', left: '65px' }} />
-          </div>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', paddingTop: '20px' }}>
+          <img src={logo} style={{ width: `${calculatedWidth}px`, height: 'auto', position: 'absolute', top: '10px', left: '65px' }} alt="Logo" />
+        </div>
 
-          <Box sx={{pt: '40px'}}>
+        <Box sx={{ pt: '40px' }}>
           {pages.map((page) => (
-            <Button key={page} component={Link} to={`/${page[1]}`} fullWidth sx={{ color: 'black', pt: 2, fontSize: 17 }}>
+            <Button
+              key={page}
+              component={Link}
+              to={`/${page[1]}`}
+              fullWidth
+              sx={{ color: 'black', pt: 2, fontSize: 17 }}
+              onClick={handleButtonClick}
+            >
               {page[0]}
             </Button>
           ))}
-          </Box>
+        </Box>
       </Drawer>
     </Fragment>
   );

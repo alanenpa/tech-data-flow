@@ -27,7 +27,6 @@ import hbbr2 from '../assets/transparent lights/Zaurak 4-30_all_20231215_Hybrid 
 import hbbl2 from '../assets/transparent lights/Zaurak 4-30_all_20231215_Hybrid 1 back low left copy.svg';
 
 function SelectedLight({ position, alreadyExists }) {
-
     if (alreadyExists === true) {
         return
     }

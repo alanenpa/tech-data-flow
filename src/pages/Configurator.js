@@ -3,29 +3,19 @@ import { Fragment } from 'react'
 
 import { Button, Grid, Paper, Stack, Typography } from '@mui/material'
 import RenderImage from './RenderImage'
-import SelectedLight from './SelectedLight'
 import Configurations from './Configurations'
-import { Unstable_Popup as BasePopup } from '@mui/base/Unstable_Popup';
-import { styled } from '@mui/system';
 
-import box from '../assets/box.svg'
-import box_active from '../assets/box-active.svg'
-import line from '../assets/line.svg'
-import line_active from '../assets/line-active.svg'
 import truck from '../assets/truck position icons/Position_side.svg'
 import truck_front from '../assets/truck position icons/Position_front.svg'
 import truck_back from '../assets/truck position icons/Position_back.svg'
 
 import hybrid from '../assets/button_hybrid-light-off.svg'
-import hybrid_hover from '../assets/button_hybrid-light- over.svg'
 import hybrid_active from '../assets/button_hybrid-light-on.svg'
 
 import spot from '../assets/button_spot-light-off.svg'
-import spot_hover from '../assets/button_spot-light-over.svg'
 import spot_active from '../assets/button_spot-light-on.svg'
 
 import wide from '../assets/button_wide-light-off.svg'
-import wide_hover from '../assets/button_wide-light-over.svg'
 import wide_active from '../assets/button_wide-light-on.svg'
 
 import box_front from '../assets/truck position icons/Position_front off.svg'
@@ -138,13 +128,17 @@ const Configurator = () => {
     <Fragment>
       <SimplePopup isOpen={isPopupOpen} message={popUpMessage}/>
       <Navbar />
+      <Typography variant='h6' sx={{ paddingBottom: 1, fontSize: '30px', textAlign: 'center' }}>
+        Configurator
+      </Typography>
+
       <Grid container sx={{ width: '100%', m: 0 }} direction='column' alignItems='center'>
         <Paper elevation={0} sx={{ width: '100%' }}>
           <Grid item sx={{ p: 2, pl: 3, pb: 1 }}>
             <Typography fontSize={18}>Select a type and position for your light:</Typography>
           </Grid>
           <Grid item sx={{ p: 2 }}>
-            <Typography variant='h6' sx={{ pl: 1, pb: 1 }}>
+            <Typography variant='h6' sx={{ pl: 1, pb: '2px' }}>
               Types of light
             </Typography>
             <Stack direction='row' justifyContent="space-evenly" alignItems="center" spacing={2}>
@@ -181,11 +175,11 @@ const Configurator = () => {
             </Stack>
 
           </Grid>
-          <Grid item sx={{ p: 2, pt: 4 }}>
-            <Typography variant='h6' sx={{ pl: 1, pb: 1 }}>
+          <Grid item sx={{ p: 2, pt: 1 }}>
+            <Typography variant='h6' sx={{ pl: 1, pb: 0 }}>
               Position
             </Typography>
-          <Stack sx={{ p: 1, mb: 2 }} direction='row' justifyContent="center" alignItems="center">
+          <Stack sx={{ p: 1, pt: 0, mb: 2 }} direction='row' justifyContent="space-between" alignItems="center">
             <Button disableRipple onClick={() => handlePositionChange('front')}>
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <div style={{ width: '60px', paddingRight: '19px', paddingTop: '20px' }}>
@@ -211,14 +205,16 @@ const Configurator = () => {
             </Button>
           </Stack>
 
-          <Stack sx={{ borderRadius: 1, padding: '10px' }} direction='row' justifyContent="space-between" alignItems="center">
+          <Stack sx={{ p: 1, mb: 0, pl: 0, ml: 0 }} direction='row' justifyContent="space-between" alignItems="center">
             <Stack sx={{ alignItems: 'center' }} direction='column'>
               <Button disableRipple onClick={() => {handlePositionChange('top', 'left')}}>
-                <div style={{ width: '60px' }}>
-                  <img
-                    src={(position[1] === 'top' && position[2] === 'left') ? box_top_left_active : box_top_left}
-                    alt='top left box'
-                  />
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <div style={{ width: '60px' }}>
+                    <img
+                      src={(position[1] === 'top' && position[2] === 'left') ? box_top_left_active : box_top_left}
+                      alt='top left box'
+                    />
+                  </div>
                 </div>
               </Button>
               <div style={{ height: '10px' }}></div>
@@ -232,7 +228,7 @@ const Configurator = () => {
               </Button>
             </Stack>
 
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginLeft: '10px', marginRight: '10px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', marginLeft: '10px', marginRight: '10px' }}>
               <img
                 src={(position[0] === 'back') ? truck_back : truck_front}
                 alt='backside of truck'
@@ -260,15 +256,18 @@ const Configurator = () => {
               </Button>
             </Stack>
           </Stack>
+
           </Grid>
-          <Grid item sx={{ p: 2, pt: 4 }}>
+          <Grid item sx={{ p: 2, pt: 1 }}>
             <Typography variant='h6' sx={{ pl: 1, pb: 1 }}>
               Preview
             </Typography>
           </Grid>
-          <RenderImage lightsList={lightsList} selected={{type: selectedType, position: position}} alreadyExists={alreadyExists({type: selectedType, position: position})}/>
+          <Grid item sx={{ py: 0, pt: 0 }}>
+            <RenderImage lightsList={lightsList} selected={{type: selectedType, position: position}} alreadyExists={alreadyExists({type: selectedType, position: position})}/>
+          </Grid>
           <Configurations lightsList={lightsList} removeLight={removeLight} />
-          <Grid container justifyContent="space-between" alignItems="center" sx={{ mt: 5, mb: 8 }}>
+          <Grid container justifyContent="space-between" alignItems="center" sx={{ m3: 5, mb: 4, mt: 3 }}>
             <Grid item sx={{ flex: 1, pl: 2, pb: 1, pr: 2 }}>
               <Button
                 onClick={() => handleAddConfiguration()}

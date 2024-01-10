@@ -19,19 +19,19 @@ const Configurations = ({ lightsList, removeLight }) => {
 
   return (
     <>
-      <List>
+      <List sx={{ pt: 0 }}>
         {lightsList.map((light, index) => (
           <ListItem key={index}>
-            <Card sx={{ mb: 0, height: '120px', width: '100%', boxShadow: '0px 2px 0px rgba(0, 0, 0, 0.1)' }}>
-              <CardContent sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <Card sx={{ mb: 0, height: '100px', width: '100%', boxShadow: '0px 2px 0px rgba(0, 0, 0, 0.1)' }}>
+              <CardContent sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', pt: '13px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', flex: '1' }}>
                   <img
                     src={imageMapping[light.type]}
                     alt={`${light.type} icon`}
-                    style={{ width: '90px', height: '90px', marginRight: '30px' }}
+                    style={{ width: '75px', height: '75px', marginRight: '25px' }}
                   />
                   <div>
-                    <Typography fontWeight='720'  variant='subtitle1'>Zaurac 4-30 {capitalize(light.type)}</Typography>
+                    <Typography fontSize='13px' fontWeight='720'  variant='subtitle1'>Zaurac 4-30 {capitalize(light.type)}</Typography>
                     {light.position.map((pos, index) =>
                       index !== 2 ? (
                         <Typography display="inline" key={index} variant='subtitle2' color="text.secondary">
