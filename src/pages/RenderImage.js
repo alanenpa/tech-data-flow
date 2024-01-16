@@ -100,9 +100,9 @@ function RenderLight({ position }) {
     if (front === "front") {
       if (top === "top") {
         if (left === "left") {
-          var image = hftr
-        } else {
           var image = hftl
+        } else {
+          var image = hftr
         }
       } else {
         if (left === "left") {

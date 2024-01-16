@@ -19,7 +19,7 @@ const Configurations = ({ lightsList, removeLight }) => {
 
   return (
     <>
-      <List sx={{ pt: 0 }}>
+      <List sx={{ py: 0 }}>
         {lightsList.map((light, index) => (
           <ListItem key={index}>
             <Card sx={{ mb: 0, height: '100px', width: '100%', boxShadow: '0px 2px 0px rgba(0, 0, 0, 0.1)' }}>

@@ -33,6 +33,8 @@ import box_bottom_left_active from '../assets/truck position icons/Position_low 
 import box_bottom_right from '../assets/truck position icons/Position_low right off.svg'
 import box_bottom_right_active from '../assets/truck position icons/Position_low right on.svg'
 
+import add from '../assets/Buttons actions_ADD.svg'
+import request from '../assets/Buttons actions_REQUEST A QUOTE.svg'
 
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -179,10 +181,11 @@ const Configurator = () => {
             <Typography variant='h6' sx={{ pl: 1, pb: 0 }}>
               Position
             </Typography>
-          <Stack sx={{ p: 1, pt: 0, mb: 2 }} direction='row' justifyContent="space-between" alignItems="center">
+
+          <Stack sx={{ p: 1, mb: 0, pl: 0, ml: 0 }} direction='row' justifyContent="space-between" alignItems="center">
             <Button disableRipple onClick={() => handlePositionChange('front')}>
               <div style={{ display: 'flex', alignItems: 'center' }}>
-                <div style={{ width: '60px', paddingRight: '19px', paddingTop: '20px' }}>
+                <div style={{ width: '60px' }}>
                   <img
                     src={(position[0] === 'front') ? box_front_active : box_front}
                     alt='frontside of truck'
@@ -191,11 +194,11 @@ const Configurator = () => {
               </div>
             </Button>
               <div style={{ display: 'flex', alignItems: 'center', marginLeft: '10px', marginRight: '10px' }}>
-                <img style={{ width: '150px', objectFit: 'contain' }} src={truck} alt='truck' />
+                <img style={{ width: '160px', objectFit: 'contain' }} src={truck} alt='truck' />
               </div>
             <Button disableRipple onClick={() => handlePositionChange('back')}>
               <div style={{ display: 'flex', alignItems: 'center' }}>
-                <div style={{ width: '60px', paddingLeft: '19px', paddingTop: '20px' }}>
+                <div style={{ width: '60px' }}>
                   <img
                     src={(position[0] === 'back') ? box_back_active : box_back}
                     alt='backside of truck'
@@ -203,11 +206,11 @@ const Configurator = () => {
                 </div>
               </div>
             </Button>
-          </Stack>
+          </Stack>          
 
           <Stack sx={{ p: 1, mb: 0, pl: 0, ml: 0 }} direction='row' justifyContent="space-between" alignItems="center">
             <Stack sx={{ alignItems: 'center' }} direction='column'>
-              <Button disableRipple onClick={() => {handlePositionChange('top', 'left')}}>
+              <Button sx={{}} disableRipple onClick={() => {handlePositionChange('top', 'left')}}>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                   <div style={{ width: '60px' }}>
                     <img
@@ -232,7 +235,7 @@ const Configurator = () => {
               <img
                 src={(position[0] === 'back') ? truck_back : truck_front}
                 alt='backside of truck'
-                style={{ height: '150px', objectFit: 'contain' }}
+                style={{ width: '160px', objectFit: 'contain' }}
               />
             </div>
 
@@ -257,31 +260,50 @@ const Configurator = () => {
             </Stack>
           </Stack>
 
+
           </Grid>
           <Grid item sx={{ p: 2, pt: 1 }}>
             <Typography variant='h6' sx={{ pl: 1, pb: 1 }}>
               Preview
             </Typography>
           </Grid>
-          <Grid item sx={{ py: 0, pt: 0 }}>
+          <Grid item sx={{ py: 0, pt: 0, px: 1 }}>
             <RenderImage lightsList={lightsList} selected={{type: selectedType, position: position}} alreadyExists={alreadyExists({type: selectedType, position: position})}/>
           </Grid>
           <Configurations lightsList={lightsList} removeLight={removeLight} />
-          <Grid container justifyContent="space-between" alignItems="center" sx={{ m3: 5, mb: 4, mt: 3 }}>
-            <Grid item sx={{ flex: 1, pl: 2, pb: 1, pr: 2 }}>
+          <Grid container justifyContent="space-between" alignItems="center" sx={{ mb: 4, mt: 1 }}>
+            <Grid item sx={{ flex: 1, pl: 1, pb: 1, pr: 1 }}>
               <Button
                 onClick={() => handleAddConfiguration()}
                 variant='contained'
-                style={{ width: '100%', paddingLeft: '20px', fontSize: '11px' }}
+                style={{ width: '100%'}}
+                sx={{
+                  m: 1,
+                  height: '60px',
+                  borderRadius: '10px',
+                  border: '4px solid gray',
+                  color: 'gray',
+                  fontSize: '16px',
+                  fontWeight: '600'
+                }}
               >
                 Add +
               </Button>
             </Grid>
-            <Grid item sx={{ flex: 1, pr: 2, pb: 1, pl: 1 }}>
+            <Grid item sx={{ flex: 1, pr: 3, pb: 1, pl: 1 }}>
               <Link to='/request' state={{ lightsList }}>
                 <Button
                   variant='contained'
-                  style={{ width: '100%', paddingRight: '20px', fontSize: '11px' }}
+                  style={{ width: '100%' }}
+                  sx={{
+                    m: 1,
+                    height: '60px',
+                    borderRadius: '10px',
+                    border: '4px solid gray',
+                    color: 'gray',
+                    fontSize: '16px',
+                    fontWeight: '600'
+                  }}
                 >
                   Request a quote
                 </Button>

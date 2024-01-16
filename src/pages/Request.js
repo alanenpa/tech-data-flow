@@ -32,9 +32,19 @@ const Request = () => {
         <Typography sx={{ m: 1 }}>Product quantity preferences</Typography>
         <ProductQuantities quantities={quantities} />
         <TextField InputProps={{ style: { borderRadius: '25px' } }} sx={{ width: '100%', mb: 3, mt: 2 }} label="Detailed request" multiline rows={5} />
-        <Grid item sx={{ mt: 3, mb: 3 }}>
+        <Grid item sx={{ mt: 0, mb: 3 }}>
           <Link to='/finish'>
-            <Button sx={{ width: '100%' }} variant='contained'>
+            <Button                   
+                  sx={{
+                    width: '100%',
+                    m: 0,
+                    height: '60px',
+                    borderRadius: '10px',
+                    border: '4px solid gray',
+                    color: 'gray',
+                    fontSize: '16px',
+                    fontWeight: '600'
+                  }} variant='contained'>
               Send request
             </Button>
           </Link>
